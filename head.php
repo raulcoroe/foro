@@ -18,8 +18,9 @@
             <h1>FORO ÓPTICA</h1>
         </div>
         <div class="elementos">
-            <a href="register.php">Registrate</a>
-            <a href="#">Únete</a>
+            <a href="index.php">Inicio</a>
+            <a href="user_register.php">Registrate</a>
+            <a href="user_login.php">Únete</a>
             </a>
         </div>
     </div>

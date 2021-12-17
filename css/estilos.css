@@ -150,7 +150,10 @@ body{
     padding: 40px;
     margin: 10px;
     justify-content: space-around;
-    height: 800px; 
+    height: 400px;
+    background: #a8c0ff;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #3f2b96, #a8c0ff);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #3f2b96, #a8c0ff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .form{
@@ -195,29 +198,6 @@ body{
     font-weight: bold;
 }
 
-.redes-sociales{
-    color:gray;
-}
-
-.redes-sociales i{
-    padding: 15px;
-    font-size: 35px;
-}
-
-.redes-sociales:hover{
-    cursor: pointer;
-}
-
-.datos-contacto{
-    display: flex;
-}
-
-.datos-contacto p{
-    color: black;
-    padding: 40px;
-    font-size: 20px;
-    font-weight: bold;
-}
 
 @media screen and (max-width:1300px){
     .contenedor-intro{
