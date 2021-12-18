@@ -1,5 +1,6 @@
 <?php
 require_once("clase_conexion.php");
+
 class usuario
 {
     public $alias;
@@ -7,20 +8,19 @@ class usuario
     public $contrasena;
     public $conexion;
 
-    function __construct($alias, $email)
+    public function __construct($alias, $password, $email)
     {
+        $this->conexion = new Conexion();
         $this->alias = $alias;
         $this->email = $email;
-        $this->conexion = new Conexion();
+        $this->contrasena = $this->encriptar($password);
     }
+
 
     public function encriptar($enc)
     {
-        $this->conexion->conectar();
         $pass = password_hash($enc, PASSWORD_DEFAULT);
-        $this->contrasena = $pass;
-        return $this->contrasena;
-        $this->conexion->desconectar();
+        return $pass;
     }
 
     public function comprobaciones()
@@ -94,7 +94,7 @@ class usuario
     }
 
 
-    public function verificar($user, $pass)
+    public function verificar($alias, $pass)
     {
         try {
             $this->conexion->conectar();
@@ -105,7 +105,7 @@ class usuario
                 for ($i = 0; $i < count($usuarios); $i++) {
                     /*Si el usuario introducido coincide con uno almacenado en la base de datos y la función password_verify confirma
                     que la contraseña introducida coincide con el hash de la almacenada, la función devuelve true para que el usuario pueda loguear*/
-                    if ($usuarios[$i]['user'] == $user && password_verify($pass, $usuarios[$i]['password'])) {
+                    if ($usuarios[$i]['alias'] == $alias && password_verify($pass, $usuarios[$i]['password'])) {
                         echo "Contraseña correcta";
                         return true;
                         break;

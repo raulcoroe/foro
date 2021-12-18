@@ -8,19 +8,19 @@
         <div class="formulario">
             <form action="" method="post">
                 <div class="form">
-                    <input type="text" name="user" placeholder="Alias" class="form-input"><br/>
+                    <input type="text" name="alias" placeholder="Alias" class="form-input"><br/>
                     <input type="password" name="password" placeholder="Contraseña" class="form-input"><br/>
                     <input type='submit' name='submit' value='Iniciar sesión' class="form-boton">
                 </div>
                 <?php
-                require('sesion.php');
-                require('usuario.php');
+                require_once('sesion.php');
+                require_once('usuario.php');
                 if (isset($_POST['submit'])) {
                     //Verificamos alias, contraseña y creamos la sesión
-                    $usuario = new Usuario($_POST['user'], $_POST['password']);
-                    if ($usuario->verificar($_POST['user'],$_POST['password'])) {
+                    $usuario = new Usuario($_POST['alias'], $_POST['password'], null);
+                    if ($usuario->verificar($_POST['alias'],$_POST['password'])) {
                         $sesion = new Sesion();
-                        $sesion->set('user',($_POST['user']));
+                        $sesion->set('alias',($_POST['alias']));
                         header("Location:index.php");
                     }
                     else {
@@ -28,7 +28,6 @@
                     }
                 }
                 ?>
-
             </form>
         </div>
 </div>
