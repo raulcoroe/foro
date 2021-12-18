@@ -19,8 +19,10 @@ class usuario
 
     public function encriptar($enc)
     {
-        $pass = password_hash($enc, PASSWORD_DEFAULT);
-        return $pass;
+        $opciones = ['cost' => 12,];
+        $passHash = password_hash($enc, PASSWORD_BCRYPT, $opciones);
+        return $passHash;
+
     }
 
     public function comprobaciones()
@@ -102,10 +104,8 @@ class usuario
             $usuarios = $this->conexion->consultar("SELECT alias, password FROM usuario");
             if (count($usuarios)) {
                 //Recorremos todas las filas del array
-                for ($i = 0; $i < count($usuarios); $i++) {
-                    /*Si el usuario introducido coincide con uno almacenado en la base de datos y la función password_verify confirma
-                    que la contraseña introducida coincide con el hash de la almacenada, la función devuelve true para que el usuario pueda loguear*/
-                    if ($usuarios[$i]['alias'] == $alias && password_verify($pass, $usuarios[$i]['password'])) {
+                foreach ($usuarios as $usuario) {
+                    if ($usuario['alias'] == $alias && password_verify($pass, $usuario['password'])) {
                         echo "Contraseña correcta";
                         return true;
                         break;

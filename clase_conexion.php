@@ -15,7 +15,7 @@ class Conexion
         //Establezco el valor de cada variable de la clase al valor que he pasado al contructor al hacer la llamada en el momento de la definición de la clase
         $dbname = 'foro';
         $this->servidor = "mysql:host=localhost;dbname=$dbname";
-        $this->user = 'admin';
+        $this->user = 'root';
         $this->password = '';
     }
 

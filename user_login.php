@@ -18,7 +18,7 @@
                 if (isset($_POST['submit'])) {
                     //Verificamos alias, contraseña y creamos la sesión
                     $usuario = new Usuario($_POST['alias'], $_POST['password'], null);
-                    if ($usuario->verificar($_POST['alias'],$_POST['password'])) {
+                    if ($usuario->verificar($_POST['alias'], $_POST['password'])) {
                         $sesion = new Sesion();
                         $sesion->set('alias',($_POST['alias']));
                         header("Location:index.php");
