@@ -1,5 +1,5 @@
 <?php
-require_once("clase_conexion.php");
+require_once("conexion.php");
 
 class usuario
 {
@@ -117,4 +117,10 @@ class usuario
             throw $ex;
         }
     }
+    public function getId($alias){
+        $usuario = $this->conexion->consultar("SELECT 'id_usuario' FROM usuario WHERE 'alias' = $alias");
+        if (count($usuario)){
+            return $usuario['id_usuario'];
+        }
+}
 }
