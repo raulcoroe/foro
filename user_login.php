@@ -13,8 +13,8 @@
                     <input type='submit' name='submit' value='Iniciar sesión' class="form-boton">
                 </div>
                 <?php
-                require_once('sesion.php');
-                require_once('usuario.php');
+                require_once('model/sesion.php');
+                require_once('model/usuario.php');
                 if (isset($_POST['submit'])) {
                     //Verificamos alias, contraseña y creamos la sesión
                     $usuario = new Usuario($_POST['alias'], $_POST['password'], null);

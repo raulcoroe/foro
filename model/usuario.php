@@ -1,5 +1,5 @@
 <?php
-require_once("conexion.php");
+require_once("model/conexion.php");
 
 class usuario
 {
@@ -118,9 +118,20 @@ class usuario
         }
     }
     public function getId($alias){
-        $usuario = $this->conexion->consultar("SELECT 'id_usuario' FROM usuario WHERE 'alias' = $alias");
+        $this->conexion->conectar();
+        $usuario = $this->conexion->consultar("SELECT id_usuario FROM usuario WHERE alias = '$alias'");
         if (count($usuario)){
-            return $usuario['id_usuario'];
+            return $usuario[0] ['id_usuario'];
         }
+        $this->conexion->desconectar();
 }
+
+    public function getAliasById($id_usuario){
+        $this->conexion->conectar();
+        $usuario = $this->conexion->consultar("SELECT alias FROM usuario WHERE id_usuario = '$id_usuario'");
+        if (count($usuario)){
+            return $usuario[0] ['alias'];
+        }
+        $this->conexion->desconectar();
+    }
 }

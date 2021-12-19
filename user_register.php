@@ -14,7 +14,9 @@
                     <input type='submit' name='submit' value='Registrarse' class="form-boton">
                 </div>
                 <?php
-                require_once('usuario.php');
+                require_once('model/usuario.php');
+                require_once "model/sesion.php";
+
                 if (isset($_POST['submit'])) {
                     //Creamos un objeto de la clase Password y almacenamos el valor de la contraseña encriptada en la variable $pw
                     /*Creamos un nuevo usuario que, en el caso de cumplir con las comprobaciones, ejecutará el método nuevo()
@@ -26,7 +28,6 @@
                     }
                 }
                 ?>
-
             </form>
         </div>
 </div>

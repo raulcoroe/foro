@@ -1,3 +1,9 @@
+<?php require_once "model/sesion.php";
+$sesion = new Sesion();
+$aliasSesion = $_SESSION['alias'];
+?>
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,6 +27,8 @@
             <a href="index.php">Inicio</a>
             <a href="user_register.php">Registrate</a>
             <a href="user_login.php">Únete</a>
+            <a href="user_cerrar.php">Cerrar sesion</a>
+            <p class = "sesion"> <?php if(isset($_SESSION['alias'])) echo "Has iniciado sesión con: ", $aliasSesion ?></p>
             </a>
         </div>
     </div>
