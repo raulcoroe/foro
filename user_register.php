@@ -1,4 +1,6 @@
 <?php include "head.php"; ?>
+
+<!--Pagina que muestra un formulario para el registro del usuario-->
 <body>
 <div id="contenedor">
     <header>
@@ -17,10 +19,8 @@
                 require_once('model/usuario.php');
                 require_once "model/sesion.php";
 
+                //Se comprueba que los campos sean correctos y se crea un nuevo usuario
                 if (isset($_POST['submit'])) {
-                    //Creamos un objeto de la clase Password y almacenamos el valor de la contraseña encriptada en la variable $pw
-                    /*Creamos un nuevo usuario que, en el caso de cumplir con las comprobaciones, ejecutará el método nuevo()
-                    para escribir sus datos en la base de datos y redirigirá a la página principal*/
                     $usuario = new Usuario($_POST['user'], $_POST['password'], $_POST['email']);
                     if ($usuario->comprobaciones() !== false) {
                         $usuario->nuevo();

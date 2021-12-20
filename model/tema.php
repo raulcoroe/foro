@@ -5,10 +5,11 @@ require_once "model/usuario.php";
 class tema
 {
 
-    public $id_usuario;
-    public $titulo;
-    public $conexion;
+    public $id_usuario;         //Id del usuario que crea el tema
+    public $titulo;             //Titulo del tema
+    public $conexion;           //Objeto que permite conectar con la bbdd
 
+    //Constructor de la clase
     public function __construct($id_usuario, $titulo)
     {
         $this->conexion = new Conexion();
@@ -16,6 +17,7 @@ class tema
         $this->titulo = $titulo;
     }
 
+    //Metodo que permite listar todos los temas
     public function mostrarTemas()
     {
         $this->conexion->conectar();
@@ -25,6 +27,7 @@ class tema
 
     }
 
+    //Metodo que permite crear los temas
     public function crearTema()
     {
         $this->conexion->conectar();
@@ -32,6 +35,7 @@ class tema
         $this->conexion->desconectar();
     }
 
+    //Metodo que permite eliminar los temas
     public function eliminarTema($tema)
     {
         $this->conexion->conectar();

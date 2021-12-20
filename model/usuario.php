@@ -3,11 +3,12 @@ require_once("model/conexion.php");
 
 class usuario
 {
-    public $alias;
-    public $email;
-    public $contrasena;
-    public $conexion;
+    public $alias;              //Nombre de usuario
+    public $email;              //Email del usuario
+    public $contrasena;         //Contrasena del usuario
+    public $conexion;           //Objeto que permite conectar con la bbdd
 
+    //Constructor de la clase
     public function __construct($alias, $password, $email)
     {
         $this->conexion = new Conexion();
@@ -16,7 +17,7 @@ class usuario
         $this->contrasena = $this->encriptar($password);
     }
 
-
+    //Metodo que permite encriptar la contrasena a partir de un hash
     public function encriptar($enc)
     {
         $opciones = ['cost' => 12,];
@@ -25,6 +26,7 @@ class usuario
 
     }
 
+    //Metodo que comprueba que los campos no esten vacios, el email sea correcto y el alias no este repetido
     public function comprobaciones()
     {
         $this->conexion->conectar();
@@ -33,11 +35,11 @@ class usuario
             echo "<div class='form'>Por favor, introduce todos los campos requeridos</div>";
             return false;
         }
-        //Comprobamos que la dirección de correo sea válida
+        //Comprobamos que la dirección de correo sea valida
         if (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
             echo "<div class='form'> La dirección de correo electrónico " . $this->email . " es inválida. Por favor, introduzca una correcta.</div>";
             return false;
-        } //Comprobamos que el alias no esté ya registrado
+        } //Comprobamos que el alias no esta ya registrado
         else {
             //Consultamos los registros y su valor en la columna user y los almacenamos en el array $usuarios
             $usuarios = $this->conexion->consultar("SELECT alias from usuario");

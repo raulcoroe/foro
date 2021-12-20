@@ -12,8 +12,8 @@ $sesion = new Sesion();
     </div>
     <?php
 
-    if (isset($_SESSION['alias'])) {
-        if (isset($_POST['submit']) && isset($_POST['titulo'])) {
+    if (isset($_SESSION['alias'])) {                                //Comprueba que la sesion este iniciada
+        if (isset($_POST['submit']) && isset($_POST['titulo'])) {   ////Comprueba que el hay texto en el titulo y que se ha pulsado el boton de submit
             $usuario = new usuario(null, null, null);
             $id_usuario = $usuario->getId($_SESSION['alias']);
             $tema = new tema($id_usuario, $_POST['titulo']);

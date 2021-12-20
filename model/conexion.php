@@ -1,12 +1,13 @@
 <?php
-
+//Clase que permite conectarnos con la bbdd
 class Conexion
 {
-    private $servidor;
-    private $user;
-    private $password;
-    private $dbh;
+    private $servidor;  //Indica donde se aloja la bbdd
+    private $user;      //Usuario de la bbdd
+    private $password;  //Contraseña de la bbdd
+    private $dbh;       //Objeto PDO
 
+    //Constructor de la clase
     public function __construct()
     {
         $dbname = 'foro';
@@ -15,6 +16,7 @@ class Conexion
         $this->password = '';
     }
 
+    //Metodo que permite conectar con la bbdd
     public function conectar()
     {
         try {
@@ -26,11 +28,13 @@ class Conexion
         }
     }
 
+    //Metodo que permite desconectar con la bbdd
     public function desconectar()
     {
         $this->dbh = null;
     }
 
+    //Metodo que ejecuta una sentencia
     public function ejecutar($strComando)
     {
         try {
@@ -41,6 +45,7 @@ class Conexion
         }
     }
 
+    //Metodo que ejecuta una consulta
     public function consultar($strComando)
     {
         try {

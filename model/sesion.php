@@ -6,19 +6,11 @@ class Sesion {
         session_start();
     }
 
-    //Método para registrar las variables de la sesión. Lo usaremos para guardar el nombre de usuario
-    public function set($alias, $valor) {
-        $_SESSION[$alias] = $valor;
+    //Método para registrar las variables de la sesión.
+    public function set($nombre, $valor) {
+        $_SESSION[$nombre] = $valor;
     }
 
-    //Recupera el valor del nombre de usuario
-    public function get($alias) {
-        if (isset($_SESSION[$alias])) {
-            return $_SESSION[$alias];
-        } else {
-            return false;
-        }
-    }
 
     //Borra la sesión y vuelve a la página inicial
     public function borrar_sesion() {

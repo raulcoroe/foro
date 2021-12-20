@@ -7,6 +7,7 @@ $aliasSesion = $_SESSION['alias'];
 <!DOCTYPE html>
 <html lang="en">
 
+<!--Cabecera del foro-->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

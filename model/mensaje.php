@@ -6,11 +6,12 @@ require_once "model/usuario.php";
 class mensaje
 {
 
-    public $id_usuario;
-    public $id_tema;
-    public $texto;
-    public $conexion;
+    public $id_usuario;         //Usuario que crea el mensaje
+    public $id_tema;            //Tema en el que es creado el mensaje
+    public $texto;              //Cuerpo del mensaje
+    public $conexion;           //Objeto que conecta con la bbdd
 
+    //Constructor de la clase
     public function __construct($id_usuario, $id_tema, $texto)
     {
         $this->conexion = new Conexion();
@@ -19,6 +20,7 @@ class mensaje
         $this->texto = $texto;
     }
 
+    //Metodo que permite listar todos los mensajes de un tema
     public function mostrarMensajes($id_tema)
     {
         $this->conexion->conectar();
@@ -28,6 +30,7 @@ class mensaje
 
     }
 
+    //Metodo que permite crear mensajes
     public function crearMensaje()
     {
         $this->conexion->conectar();
@@ -35,6 +38,7 @@ class mensaje
         $this->conexion->desconectar();
     }
 
+    //Metodo que permite eliminar los mensajes
     public function eliminarMensaje($id_mensaje)
     {
         $this->conexion->conectar();

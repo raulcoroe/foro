@@ -1,4 +1,6 @@
 <?php include "head.php"; ?>
+
+<!--Pagina que muestra un formulario para iniciar sesion-->
 <body>
 <div id="contenedor">
     <header>
@@ -15,6 +17,7 @@
                 <?php
                 require_once('model/sesion.php');
                 require_once('model/usuario.php');
+                //Verificacion de que el usuario existe al hacer login y se crea una nueva sesion
                 if (isset($_POST['submit'])) {
                     //Verificamos alias, contraseña y creamos la sesión
                     $usuario = new Usuario($_POST['alias'], $_POST['password'], null);

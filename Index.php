@@ -2,6 +2,7 @@
 require_once "model/sesion.php";
 $sesion = new Sesion();
 ?>
+<!--Pagina de inicio en la que se muestra el listado de temas el foto-->
 <body>
 <div class="wave">
     <div style="height: 150px; overflow: hidden;">
@@ -22,6 +23,7 @@ $sesion = new Sesion();
         $tema1 = new tema(null, null);
         $mensajes = $tema1->mostrarTemas();
         $usuario = new usuario(null, null, null);
+        //Recorre mediante foreach todos los temas del foro y los pinta por pantalla
         if (count($mensajes)) {
             foreach ($mensajes as $tema) {
                 $id_tema = $tema['id_tema'];
@@ -37,13 +39,18 @@ $sesion = new Sesion();
                             </div> 
                         </div>
                      </form>';
+                //Comprueba que boton de borrar se ha pulsado y elimina el tema correspondiente
                 if (isset($_POST[$tema['id_tema']])) {
-                    if ($_SESSION['alias'] == $usuario->getAliasById($tema['id_usuario'])) {
-                        $id_tema = $tema['id_tema'];
-                        $tema1->eliminarTema($id_tema);
-                        header("Location:index.php");
-                    } else {
-                        echo '<div> No se puede borrar porque ha sido creado por otro usuario </div>';
+                    if  (isset($_SESSION['alias'])) {
+                        if ($_SESSION['alias'] == $usuario->getAliasById($tema['id_usuario'])) {
+                            $id_tema = $tema['id_tema'];
+                            $tema1->eliminarTema($id_tema);
+                            header("Location:index.php");
+                        } else {
+                            echo '<div> No se puede borrar porque ha sido creado por otro usuario </div>';
+                        }
+                    }else{
+                        echo '<div> Debes iniciar sesion para modificar los temas </div>';
                     }
                 }
             }
